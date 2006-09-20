@@ -9,7 +9,7 @@ our $VERSION = '0.01';
 sub init {
     my ($self) = @_;
     $self->{'_DYNAMIC'} = 1;
-    $self->install_filter( 'nofollow' );
+    $self->install_filter( $self->{'_ARGS'}->[0] || 'nofollow' );
     return $self;
 }
 

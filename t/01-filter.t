@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Template;
-use Test::More tests => 3;
+use Test::More tests => 5;
 
 my $text     = '<a href="http://www.google.com/">Google</a>';
 my $expected = '<a rel="nofollow" href="http://www.google.com/">Google</a>';
@@ -32,6 +32,21 @@ $text
 }
 
 ###############################################################################
+# Use as named FILTER
+named_filter: {
+    my $tt = Template->new();
+    my $template = qq{
+[%- USE foo = NoFollow -%]
+[%- FILTER \$foo -%]
+$text
+[%- END -%]
+};
+    my $output;
+    $tt->process( \$template, undef, \$output );
+    is( $output, $expected, 'Works in named [% FILTER ... %] block' );
+}
+
+###############################################################################
 # Use as inline filter
 filter_inline: {
     my $tt = Template->new();
@@ -42,4 +57,17 @@ filter_inline: {
     my $output;
     $tt->process( \$template, { 'text' => $text }, \$output );
     is( $output, $expected, 'Works as inline filter' );
+}
+
+###############################################################################
+# Use as named inline filter
+named_filter_inline: {
+    my $tt = Template->new();
+    my $template = qq{
+[%- USE foo = NoFollow -%]
+[%- text | \$foo -%]
+};
+    my $output;
+    $tt->process( \$template, { 'text' => $text }, \$output );
+    is( $output, $expected, 'Works as named inline filter' );
 }
