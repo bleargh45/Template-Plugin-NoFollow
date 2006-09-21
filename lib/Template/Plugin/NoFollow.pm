@@ -15,7 +15,10 @@ sub init {
 
 sub filter {
     my ($self, $text) = @_;
-    $text =~ s/(<\s*a)(\s+href)/$1 rel="nofollow"$2/gsmi;
+    # remove any existing rel="nofollow" attrs
+    $text =~ s/(<\s*a)([^>]*)\srel\s*=\s*"?nofollow"?([^>]*>)/$1$2$3/gsmi;
+    # add in our rel="nofollow" attr
+    $text =~ s/(<\s*a)([^>]*>)/$1 rel="nofollow"$2/gsmi;
     return $text;
 };
 

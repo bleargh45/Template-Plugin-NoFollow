@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Template;
-use Test::More tests => 5;
+use Test::More tests => 9;
 
 my $text     = '<a href="http://www.google.com/">Google</a>';
 my $expected = '<a rel="nofollow" href="http://www.google.com/">Google</a>';
@@ -70,4 +70,47 @@ named_filter_inline: {
     my $output;
     $tt->process( \$template, { 'text' => $text }, \$output );
     is( $output, $expected, 'Works as named inline filter' );
+}
+
+###############################################################################
+# Filter <A> already set up with rel="nofollow"; gets moved, but is preserved
+has_nofollow: {
+    my $tt = Template->new();
+    my $template = qq{[% USE NoFollow %][%- text | nofollow -%]};
+    my $text     = qq{<a href="_href" rel="nofollow">foo</a>};
+    my $expected = qq{<a rel="nofollow" href="_href">foo</a>};
+    my $output;
+    $tt->process( \$template, { 'text' => $text }, \$output );
+    is( $output, $expected, 'Works if already has rel="nofollow"' );
+}
+
+###############################################################################
+# Filter <A> tags with attributes in various orders
+attribute_ordering: {
+    my $tt = Template->new();
+    my $template = qq{[% USE NoFollow %][%- text | nofollow -%]};
+
+    a_href_alt: {
+        my $output;
+        my $text     = qq{<a href="_href" alt="_alt">foo</a>};
+        my $expected = qq{<a rel="nofollow" href="_href" alt="_alt">foo</a>};
+        $tt->process( \$template, { 'text' => $text }, \$output );
+        is( $output, $expected, 'Works as <A HREF=... ALT=...>' );
+    }
+
+    a_alt_href: {
+        my $output;
+        my $text     = qq{<a alt="_alt" href="_href">foo</a>};
+        my $expected = qq{<a rel="nofollow" alt="_alt" href="_href">foo</a>};
+        $tt->process( \$template, { 'text' => $text }, \$output );
+        is( $output, $expected, 'Works as <A ALT=... HREF=...>' );
+    }
+
+    a_onclick: {
+        my $output;
+        my $text     = qq{<a onclick="_onclick">foo</a>};
+        my $expected = qq{<a rel="nofollow" onclick="_onclick">foo</a>};
+        $tt->process( \$template, { 'text' => $text }, \$output );
+        is( $output, $expected, 'Works as <A ONCLICK=...>' );
+    }
 }
