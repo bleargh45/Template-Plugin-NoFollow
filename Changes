@@ -1,8 +1,10 @@
 Revision history for Perl extension Template::Plugin::NoFollow
 
-1.000   ???
+1.000   Wed Sep 20 9:41pm 2006
     - updated test suites
     - now allows for filter to be named (e.g. "USE foo=NoFollow")
+    - replaces existing rel="nofollow" attributes instead of creating
+      duplicate attribute
 
 0.01    Fri Mar 17 12:11pm 2006
     - original version

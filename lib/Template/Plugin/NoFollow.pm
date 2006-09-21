@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw(Template::Plugin::Filter);
 
-our $VERSION = '0.01';
+our $VERSION = '1.000';
 
 sub init {
     my ($self) = @_;
