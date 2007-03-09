@@ -4,4 +4,5 @@ Makefile.PL
 META.yml
 lib/Template/Plugin/NoFollow.pm
 t/01-filter.t
+t/02-filter-allow.t
 t/pod.t

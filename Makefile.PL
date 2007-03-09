@@ -6,6 +6,7 @@ WriteMakefile(
     'ABSTRACT'      => 'TT plugin to add rel="nofollow" to HTML links',
     'AUTHOR'        => 'Graham TerMarsch <cpan@howlingfrog.com>',
     'PREREQ_PM'     => { 'Template'     => 2.00,
+                         'HTML::Parser' => 0,
                          'Test::More'   => 0,
                        },
     'clean'         => { 'FILES' => '$(DISTVNAME).tar.gz' },
