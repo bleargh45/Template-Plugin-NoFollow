@@ -1,12 +1,23 @@
 package Template::Plugin::NoFollow;
 
+###############################################################################
+# Required inclusions.
+###############################################################################
 use strict;
 use warnings;
 use HTML::Parser;
 use base qw(Template::Plugin::Filter);
 
+###############################################################################
+# Version number.
+###############################################################################
 our $VERSION = '1.001';
 
+###############################################################################
+# Subroutine:   init()
+###############################################################################
+# Initializes the template plugin.
+###############################################################################
 sub init {
     my ($self) = @_;
     $self->{'_DYNAMIC'} = 1;
@@ -14,6 +25,11 @@ sub init {
     return $self;
 }
 
+###############################################################################
+# Subroutine:   filter($text, $args, $conf)
+###############################################################################
+# Filters the given text, and adds rel="nofollow" to links.
+###############################################################################
 sub filter {
     my ($self, $text, $args, $conf) = @_;
 
@@ -83,6 +99,20 @@ Through the use of the C<allow> option, you can specify URLs that are I<not>
 marked as C<rel="nofollow">.  This can be used to set up a filter that leaves
 internal links alone, and that marks all external links as C<rel="nofollow">.
 C<allow> accepts regular expressions, so you can be as elaborate as you'd like.
+
+=head1 METHODS
+
+=over
+
+=item init()
+
+Initializes the template plugin. 
+
+=item filter($text, $args, $conf)
+
+Filters the given text, and adds rel="nofollow" to links. 
+
+=back
 
 =head1 AUTHOR
 
