@@ -3,6 +3,7 @@ MANIFEST
 Build.PL
 Makefile.PL
 META.yml
+README
 lib/Template/Plugin/NoFollow.pm
 t/01-filter.t
 t/02-filter-allow.t
