@@ -4,6 +4,7 @@ Revision history for Perl extension Template::Plugin::NoFollow
       allowed to be followed; useful when processing large blocks of text that
       may contain internal links
     - added POD coverage tests
+    - switched to Module::Build instead of EU::MM
 
 1.000   Wed Sep 20 9:41pm 2006
     - updated test suites
