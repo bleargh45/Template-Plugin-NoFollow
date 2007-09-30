@@ -36,11 +36,8 @@ sub filter {
                     my ($tag, $text, $attr) = @_;
                     if ($tag eq 'a') {
                         my $should_nofollow = 1;
-                        foreach my $allow (@allow) {
-                            (my $href = $attr->{'href'}) =~ s{.*?://}{};
-                            if ($href =~ /^$allow/) {
-                                $should_nofollow = 0;
-                            }
+                        if (grep { $attr->{'href'} =~ /$_/ } @allow) {
+                            $should_nofollow = 0;
                         }
                         if ($should_nofollow) {
                             # remove any existing rel="nofollow" attrs
@@ -69,7 +66,7 @@ Template::Plugin::NoFollow - TT filter to add rel="nofollow" to all HTML links
 
 =head1 SYNOPSIS
 
-  [% use NoFollow allow=['www.example.com'] %]
+  [% use NoFollow allow=['www.example.com', '^http://example.com/'] %]
   ...
   [% FILTER nofollow %]
     <a href="http://www.google.com/">Google</a>
@@ -85,6 +82,7 @@ C<rel="nofollow"> to all HTML links found in the filtered text.
 Through the use of the C<allow> option, you can specify URLs that are I<not>
 marked as C<rel="nofollow">.  This can be used to set up a filter that leaves
 internal links alone, and that marks all external links as C<rel="nofollow">.
+C<allow> accepts regular expressions, so you can be as elaborate as you'd like.
 
 =head1 AUTHOR
 
