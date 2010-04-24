@@ -1,6 +1,6 @@
 Build
 _build/
-.svn/
+.git/
 \..*\.swp
 blib/
 Makefile
