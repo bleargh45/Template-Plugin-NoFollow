@@ -1,6 +1,6 @@
 # NAME
 
-Template::Plugin::NoFollow - TT filter to add rel="nofollow" to all HTML links
+Template::Plugin::NoFollow - Template Toolkit filter to add rel="nofollow" to all HTML links
 
 # SYNOPSIS
 
@@ -16,8 +16,8 @@ Template::Plugin::NoFollow - TT filter to add rel="nofollow" to all HTML links
 
 # DESCRIPTION
 
-`Template::Plugin::NoFollow` is a filter plugin for TT, which adds
-`rel="nofollow"` to all HTML links found in the filtered text.
+`Template::Plugin::NoFollow` is a filter plugin for [Template::Toolkit](https://metacpan.org/pod/Template%3A%3AToolkit), which
+adds `rel="nofollow"` to all HTML links found in the filtered text.
 
 Through the use of the `allow` option, you can specify URLs that are _not_
 marked as `rel="nofollow"`.  This can be used to set up a filter that leaves

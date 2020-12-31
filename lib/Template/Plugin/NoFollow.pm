@@ -78,7 +78,7 @@ sub filter {
 
 =head1 NAME
 
-Template::Plugin::NoFollow - TT filter to add rel="nofollow" to all HTML links
+Template::Plugin::NoFollow - Template Toolkit filter to add rel="nofollow" to all HTML links
 
 =head1 SYNOPSIS
 
@@ -92,8 +92,8 @@ Template::Plugin::NoFollow - TT filter to add rel="nofollow" to all HTML links
 
 =head1 DESCRIPTION
 
-C<Template::Plugin::NoFollow> is a filter plugin for TT, which adds
-C<rel="nofollow"> to all HTML links found in the filtered text.
+C<Template::Plugin::NoFollow> is a filter plugin for L<Template::Toolkit>, which
+adds C<rel="nofollow"> to all HTML links found in the filtered text.
 
 Through the use of the C<allow> option, you can specify URLs that are I<not>
 marked as C<rel="nofollow">.  This can be used to set up a filter that leaves
