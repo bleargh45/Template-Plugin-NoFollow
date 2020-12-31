@@ -28,11 +28,11 @@ internal links alone, and that marks all external links as `rel="nofollow"`.
 
 - init()
 
-    Initializes the template plugin. 
+    Initializes the template plugin.
 
 - filter($text, $args, $conf)
 
-    Filters the given text, and adds rel="nofollow" to links. 
+    Filters the given text, and adds rel="nofollow" to links.
 
 # AUTHOR
 

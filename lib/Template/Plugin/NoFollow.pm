@@ -106,11 +106,11 @@ C<allow> accepts regular expressions, so you can be as elaborate as you'd like.
 
 =item init()
 
-Initializes the template plugin. 
+Initializes the template plugin.
 
 =item filter($text, $args, $conf)
 
-Filters the given text, and adds rel="nofollow" to links. 
+Filters the given text, and adds rel="nofollow" to links.
 
 =back
 
